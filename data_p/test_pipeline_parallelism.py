@@ -14,7 +14,7 @@ src_path = project_root / "src"
 if str(src_path) not in sys.path:
     sys.path.insert(0, str(src_path))
 
-from base_model import Model, create_model, create_data
+from base_model import create_model, create_data
 from pipeline_parallel import (
     PipelineParallelTrainer,
     LEARNING_RATE,

@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from typing import Optional
 
-from base_model import Model, OneStepTrainer
+from base_model import OneStepTrainer
 
 
 class TorchDataParallelTrainer(OneStepTrainer):

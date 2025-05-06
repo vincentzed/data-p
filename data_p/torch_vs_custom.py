@@ -8,10 +8,9 @@ data_p_path = project_root / "data_p"
 if str(data_p_path) not in sys.path:
     sys.path.insert(0, str(data_p_path))
 
-from base_model import Model, create_model, create_data
+from base_model import create_model, create_data
 from torch_ref_dp import TorchDataParallelTrainer
 from data_p import ManualDataParallelTrainer
-from ring_reduce import RingReduceGradientAverager
 
 DATA_SIZE = 400
 CPU_DEVICE = torch.device("cpu")
@@ -77,7 +76,7 @@ print("\n--- Comparison Results ---")
 
 if loss_torch is not None and loss_manual is not None:
     loss_diff = torch.abs(loss_torch - loss_manual)
-    print(f"Loss Comparison:")
+    print("Loss Comparison:")
     print(f"  Torch DP Loss:  {loss_torch.item():.8f}")
     print(f"  Manual DP Loss: {loss_manual.item():.8f}")
     print(f"  Absolute Diff:  {loss_diff.item():.8g}")

@@ -5,9 +5,8 @@ Pipeline Parallelism GPipe-style.
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict
 
-# Assuming model_base.py defines Model and OneStepTrainer
 from base_model import Model, OneStepTrainer
 
 

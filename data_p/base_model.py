@@ -1,6 +1,5 @@
 import torch
 from abc import ABC, abstractmethod
-from torch import nn
 
 
 class Model(torch.nn.Module):
