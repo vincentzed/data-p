@@ -1,6 +1,5 @@
 import torch
 from abc import ABC, abstractmethod
-from torch import nn
 
 
 class Model(torch.nn.Module):
@@ -12,16 +11,9 @@ class Model(torch.nn.Module):
         self.fc2 = torch.nn.Linear(in_features=2, out_features=1)
 
     @property
-    def parameters(self) -> list[torch.nn.Parameter]:
-        """
-        Potentially unneeded property.
-        """
-        return list(self.fc1.parameters()) + list(self.fc2.parameters())
-
-    @property
     def device(self) -> torch.device:
         try:
-            return next(self.parameters()).device
+            return next(super().parameters()).device
         except StopIteration:
             raise ValueError(
                 "No parameters found in the model. Don't use CPU for training."
@@ -50,7 +42,7 @@ def create_model() -> Model:
 class OneStepTrainer(ABC):
     @abstractmethod
     def loss_and_backward_pass(
-        self, net: Model, x: torch.Tensor, y: torch.Tensor, criterion: torch.nn.Module
+        self, x: torch.Tensor, y: torch.Tensor
     ) -> torch.Tensor:
         """
         return calculated loss.
